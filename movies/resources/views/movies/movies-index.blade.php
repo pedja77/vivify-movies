@@ -1,3 +1,10 @@
+@extends('layouts.master-layout')
+
+@section('title')
+    IMDB clone
+@endsection
+
+@section('content')
 <ul>
 @foreach($movies as $movie)
     <li>
@@ -6,3 +13,4 @@
     </li>
 @endforeach
 </ul>
+@endsection
