@@ -20,7 +20,7 @@
         <a class="nav-link" href="/movies">Movies <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Add Movie</a>
+        <a class="nav-link" href="{{ route('create-movie') }}">Add Movie</a>
       </li>
     </ul>
   </div>
