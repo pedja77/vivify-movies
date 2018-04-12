@@ -11,4 +11,6 @@
     Year: {{ $movie->year }}<br>
     Story:
     <p>{{ $movie->storyline }}</p>
+    @include('comments.comments-index')
+    @include('comments.comments-create')
 @endsection

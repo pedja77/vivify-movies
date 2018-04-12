@@ -13,4 +13,8 @@ class Movie extends Model
         'genre',
         'storyline'
     ];
+
+    public function comments() {
+        return $this->hasMany('App\Comment');
+    }
 }

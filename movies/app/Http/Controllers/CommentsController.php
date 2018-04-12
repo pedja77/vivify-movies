@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
-use App\Movie;
 
-class MoviesController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movie::all();
-        //dd(compact('movies'));
-
-        return view('movies.movies-index', compact(['movies']));
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('movies.movies-create');
+        //
     }
 
     /**
@@ -38,41 +35,34 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-        $currentYear = (int)date("Y");
-        //dd((int)date('Y'));
         $this->validate($request, [
-            'title' => 'required',
-            'genre'=> 'required',
-            'storyline'=> 'nullable|max:1000',
-            'year'=> "nullable|integer|between: 1900, $currentYear"
+            'content'=> 'required',
+            
         ]);
 
-        Movie::create($request->all());
+        Comment::create($request->all());
 
-        return redirect()->route('all-movies');
+        return redirect()->route('single-movie', ['id'=> $request->movie_id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        $movie = Movie::find($id);
-        //dd($movie);
-
-        return view('movies.movies-show', compact(['movie']));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -81,10 +71,10 @@ class MoviesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -92,11 +82,12 @@ class MoviesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
         //
     }
 }
+
