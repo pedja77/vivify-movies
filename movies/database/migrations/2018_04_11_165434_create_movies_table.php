@@ -18,7 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->string('genre');
             $table->string('director');
-            $table->unsignedInteger('year');
+            $table->unsignedInteger('year')->nullable();
             $table->text('storyline');
             $table->timestamps();
         });

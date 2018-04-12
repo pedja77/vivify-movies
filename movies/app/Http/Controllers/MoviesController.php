@@ -38,15 +38,16 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $currentYear = (int)date("Y");
+        //dd((int)date('Y'));
+        $this->validate($request, [
             'title' => 'required',
-            'director' => 'required',
             'genre'=> 'required',
-            'storyline'=> 'required',
-            'year'=> 'required|integer'
+            'storyline'=> 'max:1000',
+            'year'=> "nullable|integer|between: 1900, $currentYear"
         ]);
 
-        Movie::create(request()->all());
+        Movie::create($request->all());
 
         return redirect()->route('all-movies');
     }
